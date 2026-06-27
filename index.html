@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JamKeys - Browser Music Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">JamKeys</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Studio</a>
+      <a href="#">My Recordings</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Play Instruments With Your Keyboard</h1>
+    <p>Create music directly inside your browser. Choose an instrument, play notes, record your tune, and listen again.</p>
+    <button onclick="scrollToStudio()">Start Playing</button>
+  </section>
+
+  <main id="studio" class="studio">
+    <h2>Music Studio</h2>
+
+    <div class="instrument-box">
+      <label for="instrumentSelect">Choose Instrument:</label>
+      <select id="instrumentSelect">
+        <option value="piano">Piano</option>
+        <option value="drums">Drums</option>
+        <option value="harmonium">Harmonium</option>
+        <option value="guitar">Guitar</option>
+        <option value="tabla">Tabla</option>
+        <option value="flute">Flute</option>
+      </select>
+    </div>
+
+    <div class="controls">
+      <button id="recordBtn">Start Recording</button>
+      <button id="stopRecordBtn">Stop Recording</button>
+      <button id="playRecordBtn">Play Recording</button>
+      <button id="clearRecordBtn">Clear Recording</button>
+    </div>
+
+    <div class="save-box">
+      <input type="text" id="trackNameInput" placeholder="Enter track name..." />
+      <button id="saveRecordingBtn">Save Recording</button>
+    </div>
+
+    <p class="status" id="statusText">Press keyboard keys to play music.</p>
+
+    <section class="learn-section">
+      <h2>Learn a Song</h2>
+      <p>Choose a song and follow the keys shown on screen.</p>
+
+      <div class="learn-controls">
+        <select id="songSelect">
+          <option value="">Choose a song</option>
+          <option value="twinkle">Twinkle Twinkle Little Star</option>
+          <option value="birthday">Happy Birthday</option>
+          <option value="saReGaMa">Sa Re Ga Ma Practice</option>
+        </select>
+
+        <button id="startSongBtn">Start Song</button>
+        <button id="resetSongBtn">Reset</button>
+      </div>
+
+      <div class="song-display">
+        <h3 id="songTitle">No song selected</h3>
+        <p id="songInstruction">Select a song to begin.</p>
+
+        <div class="progress-box">
+          <div id="songProgressBar"></div>
+        </div>
+
+        <p id="songProgressText">Progress: 0 / 0</p>
+      </div>
+    </section>
+
+    <section class="keyboard-section">
+      <h3 id="instrumentTitle">Piano Mode</h3>
+
+        <div class="piano" id="keysContainer"></div>
+    </section>
+
+    <section class="recordings-section">
+      <h2>My Recordings</h2>
+      <p>Your saved music tracks will appear here.</p>
+
+      <div id="recordingsList" class="recordings-list">
+        <!-- Saved recordings will appear here using JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Made with music, code, and madness.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

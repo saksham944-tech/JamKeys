@@ -1,0 +1,1136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #101018;
+  color: white;
+}
+
+.navbar {
+  height: 70px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #181824;
+  border-bottom: 1px solid #2c2c3a;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffcc70;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #ffcc70;
+}
+
+.hero {
+  min-height: 80vh;
+  padding: 80px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #151522, #251839);
+}
+
+.hero h1 {
+  font-size: 55px;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  line-height: 1.6;
+  color: #d6d6d6;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  width: fit-content;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  background: #ffcc70;
+  color: #121212;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hero button:hover {
+  background: #ffb347;
+}
+
+.studio {
+  padding: 60px 8%;
+  text-align: center;
+}
+
+.studio h2 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.instrument-box {
+  margin-bottom: 25px;
+}
+
+.instrument-box label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.instrument-box select {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+
+.controls {
+  margin: 25px 0;
+}
+
+.controls button {
+  padding: 12px 18px;
+  margin: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #2f2f44;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.controls button:hover {
+  background: #ffcc70;
+  color: black;
+}
+
+.status {
+  margin: 20px 0;
+  color: #ffcc70;
+}
+
+.keyboard-section {
+  margin-top: 40px;
+  padding: 30px;
+  background: #181824;
+  border-radius: 20px;
+}
+
+.keyboard-section h3 {
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.music-key {
+  width: 90px;
+  height: 130px;
+  border: none;
+  border-radius: 15px;
+  background: white;
+  color: black;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 0 #b8b8b8;
+  transition: 0.1s;
+}
+
+.music-key span {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.music-key:active,
+.music-key.active {
+  transform: translateY(8px);
+  box-shadow: 0 0 0 #b8b8b8;
+  background: #ffcc70;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #181824;
+  color: #aaa;
+}
+
+.save-box {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.save-box input {
+  width: 260px;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.save-box button {
+  padding: 13px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ffcc70;
+  color: #111;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-box button:hover {
+  background: #ffb347;
+}
+
+.recordings-section {
+  margin-top: 60px;
+  padding: 35px;
+  background: #181824;
+  border-radius: 20px;
+}
+
+.recordings-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.recordings-section p {
+  color: #cfcfcf;
+  margin-bottom: 25px;
+}
+
+.recordings-list {
+  display: grid;
+  gap: 18px;
+}
+
+.recording-card {
+  padding: 20px;
+  background: #242436;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border: 1px solid #33334a;
+}
+
+.recording-info {
+  text-align: left;
+}
+
+.recording-info h3 {
+  color: #ffcc70;
+  margin-bottom: 6px;
+}
+
+.recording-info p {
+  margin: 0;
+  color: #bdbdbd;
+  font-size: 14px;
+}
+
+.recording-actions button {
+  padding: 10px 14px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #2f2f44;
+  color: white;
+}
+
+.recording-actions button:hover {
+  background: #ffcc70;
+  color: #111;
+}
+
+.delete-btn:hover {
+  background: #ff5c5c !important;
+  color: white !important;
+}
+
+.learn-section {
+  margin-top: 45px;
+  padding: 35px;
+  background: #181824;
+  border-radius: 20px;
+  border: 1px solid #33334a;
+}
+
+.learn-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.learn-section p {
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+.learn-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.learn-controls select {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  min-width: 260px;
+}
+
+.learn-controls button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #ffcc70;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.learn-controls button:hover {
+  background: #ffb347;
+}
+
+.song-display {
+  padding: 25px;
+  background: #242436;
+  border-radius: 15px;
+}
+
+.song-display h3 {
+  color: #ffcc70;
+  margin-bottom: 12px;
+}
+
+#songInstruction {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+.progress-box {
+  width: 100%;
+  height: 16px;
+  background: #101018;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+#songProgressBar {
+  width: 0%;
+  height: 100%;
+  background: #ffcc70;
+  transition: 0.3s;
+}
+
+.correct-note {
+  color: #7CFF8B !important;
+}
+
+.wrong-note {
+  color: #ff5c5c !important;
+}
+
+.keyboard-section {
+  overflow-x: auto;
+}
+
+.piano {
+  position: relative;
+  width: 896px;
+  height: 280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.piano-key {
+  user-select: none;
+}
+
+.white-key {
+  width: 64px;
+  height: 280px;
+  background: linear-gradient(#ffffff, #dcdcdc);
+  border: 2px solid #111;
+  border-radius: 0 0 12px 12px;
+  color: #111;
+  position: relative;
+  cursor: pointer;
+  box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.white-key .note-name {
+  position: absolute;
+  bottom: 62px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.white-key .keyboard-key {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #ffcc70;
+  padding: 6px 9px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.black-key {
+  width: 42px;
+  height: 165px;
+  background: linear-gradient(#333, #000);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: var(--left);
+  z-index: 5;
+  border-radius: 0 0 9px 9px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 16px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
+}
+
+.black-key span {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.black-key small {
+  color: #ffcc70;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.white-key.active {
+  background: #ffcc70;
+  transform: translateY(6px);
+}
+
+.black-key.active {
+  background: #ffcc70;
+  color: #111;
+  transform: translateY(5px);
+}
+
+.black-key.active small {
+  color: #111;
+}
+
+/* ================= DRUM KIT UI ================= */
+
+.drum-kit {
+  position: relative;
+  width: 920px;
+  height: 540px;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at center, rgba(255, 204, 112, 0.08), transparent 55%),
+    linear-gradient(180deg, #151522, #101018);
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+/* Small instruction badge */
+.drum-kit::before {
+  content: "Play drums with A S D F G H J K L";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffcc70;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 204, 112, 0.25);
+}
+
+/* Shared drum/cymbal clickable piece */
+.drum-piece {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+  transition: transform 0.08s ease, filter 0.08s ease, box-shadow 0.08s ease;
+}
+
+.drum-piece span {
+  display: inline-block;
+  margin-top: 5px;
+  background: #111;
+  color: #ffcc70;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Drum shell style */
+.drum {
+  background:
+    radial-gradient(circle at 50% 18%, #ffffff 0%, #f4f4f4 28%, #cfcfcf 29%, transparent 31%),
+    linear-gradient(90deg, #850b0b, #df2727, #ff6666, #a80f0f);
+  border: 4px solid #242424;
+  box-shadow:
+    inset 0 -18px 24px rgba(0, 0, 0, 0.28),
+    0 14px 22px rgba(0, 0, 0, 0.45);
+}
+
+.drum::before,
+.drum::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 5px;
+  background: #d8d8d8;
+  border-radius: 20px;
+}
+
+.drum::before {
+  top: 18%;
+}
+
+.drum::after {
+  bottom: 14%;
+}
+
+/* Cymbal style */
+.cymbal {
+  background:
+    radial-gradient(circle at 45% 45%, #fff0bf 0%, #d59d45 20%, #b67622 45%, #f4c77a 70%, #a9651d 100%);
+  border: 3px solid rgba(80, 45, 10, 0.7);
+  color: #111;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.35),
+    0 12px 18px rgba(0, 0, 0, 0.35);
+}
+
+.cymbal::before {
+  content: "";
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: #5b3718;
+  top: 39%;
+  left: 39%;
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.15);
+}
+
+/* Stands */
+.stand {
+  position: absolute;
+  width: 5px;
+  background: linear-gradient(#e0e0e0, #777);
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.stand::before,
+.stand::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 80px;
+  background: linear-gradient(#cfcfcf, #777);
+  bottom: -65px;
+  transform-origin: top;
+  border-radius: 10px;
+}
+
+.stand::before {
+  transform: rotate(32deg);
+}
+
+.stand::after {
+  transform: rotate(-32deg);
+}
+
+/* Individual positions */
+
+.kick-drum {
+  width: 260px;
+  height: 220px;
+  left: 330px;
+  top: 265px;
+  border-radius: 50%;
+  z-index: 4;
+  font-size: 18px;
+}
+
+.kick-drum::before {
+  content: "";
+  position: absolute;
+  width: 76%;
+  height: 76%;
+  left: 12%;
+  top: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #f2f2f2 55%, #d7d7d7 75%);
+  border: 5px solid #232323;
+}
+
+.kick-drum .drum-label {
+  position: relative;
+  z-index: 3;
+  top: 86px;
+}
+
+.kick-pedal {
+  position: absolute;
+  width: 52px;
+  height: 82px;
+  left: 433px;
+  top: 434px;
+  background: linear-gradient(#444, #111);
+  border-radius: 16px 16px 8px 8px;
+  z-index: 7;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+}
+
+.kick-pedal::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 15px;
+  top: -34px;
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 0 0 5px #444;
+}
+
+.snare-drum {
+  width: 170px;
+  height: 120px;
+  left: 145px;
+  top: 295px;
+  border-radius: 50% / 35%;
+  z-index: 5;
+}
+
+.rack-tom-1 {
+  width: 150px;
+  height: 125px;
+  left: 310px;
+  top: 150px;
+  border-radius: 50% / 34%;
+  z-index: 5;
+}
+
+.rack-tom-2 {
+  width: 165px;
+  height: 132px;
+  left: 485px;
+  top: 150px;
+  border-radius: 50% / 34%;
+  z-index: 5;
+}
+
+.floor-tom {
+  width: 180px;
+  height: 210px;
+  left: 665px;
+  top: 270px;
+  border-radius: 50% / 22%;
+  z-index: 5;
+}
+
+.hihat-closed {
+  width: 150px;
+  height: 65px;
+  left: 55px;
+  top: 210px;
+  z-index: 5;
+  transform: rotate(-4deg);
+}
+
+.hihat-open {
+  width: 155px;
+  height: 68px;
+  left: 55px;
+  top: 160px;
+  z-index: 4;
+  transform: rotate(3deg);
+  opacity: 0.92;
+}
+
+.crash-cymbal {
+  width: 190px;
+  height: 95px;
+  left: 250px;
+  top: 65px;
+  z-index: 4;
+  transform: rotate(-10deg);
+}
+
+.ride-cymbal {
+  width: 230px;
+  height: 105px;
+  left: 660px;
+  top: 85px;
+  z-index: 4;
+  transform: rotate(12deg);
+}
+
+.hihat-stand {
+  height: 235px;
+  left: 127px;
+  top: 235px;
+}
+
+.crash-stand {
+  height: 300px;
+  left: 342px;
+  top: 130px;
+  transform: rotate(-10deg);
+}
+
+.ride-stand {
+  height: 290px;
+  left: 785px;
+  top: 158px;
+  transform: rotate(15deg);
+}
+
+.snare-stand {
+  height: 135px;
+  left: 230px;
+  top: 390px;
+}
+
+.floor-stand {
+  height: 100px;
+  left: 755px;
+  top: 445px;
+}
+
+/* Label inside drums */
+.drum-label {
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Animations */
+.drum-piece.active {
+  filter: brightness(1.3);
+  box-shadow:
+    0 0 24px rgba(255, 204, 112, 0.75),
+    0 14px 22px rgba(0, 0, 0, 0.45);
+}
+
+.drum.active {
+  transform: scale(0.96) translateY(5px);
+}
+
+.kick-drum.active {
+  transform: scale(0.97);
+}
+
+.snare-drum.active,
+.rack-tom-1.active,
+.rack-tom-2.active,
+.floor-tom.active {
+  animation: drumHit 0.16s ease;
+}
+
+.cymbal.active {
+  animation: cymbalHit 0.18s ease;
+}
+
+@keyframes drumHit {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(0.93) translateY(8px);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cymbalHit {
+  0% {
+    transform: rotate(var(--angle, 0deg)) scale(1);
+  }
+  40% {
+    transform: rotate(calc(var(--angle, 0deg) + 7deg)) scale(0.94);
+  }
+  100% {
+    transform: rotate(var(--angle, 0deg)) scale(1);
+  }
+}
+
+.crash-cymbal {
+  --angle: -10deg;
+}
+
+.ride-cymbal {
+  --angle: 12deg;
+}
+
+.hihat-closed {
+  --angle: -4deg;
+}
+
+.hihat-open {
+  --angle: 3deg;
+}
+
+/* Mobile / small screen support */
+@media (max-width: 980px) {
+  .drum-kit {
+    transform: scale(0.82);
+    transform-origin: top left;
+    margin-left: 0;
+  }
+
+  .keyboard-section {
+    min-height: 500px;
+  }
+}
+
+/* ================= HARMONIUM UI ================= */
+
+.harmonium {
+  width: 920px;
+  height: 480px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, #8a4a18, #5f2f0c 55%, #3d1d08);
+  box-shadow:
+    inset 0 0 35px rgba(255, 210, 130, 0.18),
+    0 24px 35px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  border: 4px solid #2d1606;
+}
+
+/* top wooden panel */
+.harmonium-top-panel {
+  position: absolute;
+  width: 840px;
+  height: 120px;
+  top: 28px;
+  left: 40px;
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, #6a310b, #b86a20, #d68a36, #7a380f);
+  border: 4px solid #2b1506;
+  box-shadow:
+    inset 0 0 18px rgba(255, 235, 170, 0.22),
+    0 8px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* jali / sound holes */
+.harmonium-grill {
+  position: absolute;
+  top: 15px;
+  left: 35px;
+  right: 35px;
+  height: 70px;
+  border: 3px solid #351706;
+  background:
+    linear-gradient(180deg, rgba(60, 24, 3, 0.15), rgba(255, 210, 120, 0.18));
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+}
+
+.reed-hole {
+  width: 28px;
+  height: 15px;
+  background: #211006;
+  border-radius: 50%;
+  transform: rotate(-8deg);
+  box-shadow:
+    inset 0 3px 5px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(255, 220, 140, 0.3);
+}
+
+.reed-hole:nth-child(even) {
+  transform: rotate(12deg);
+  margin-top: 20px;
+}
+
+/* keyboard area */
+.harmonium-keyboard {
+  position: absolute;
+  width: 650px;
+  height: 185px;
+  top: 160px;
+  left: 135px;
+  background: #191919;
+  border: 8px solid #3a1805;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  box-shadow:
+    inset 0 0 16px rgba(0, 0, 0, 0.8),
+    0 12px 16px rgba(0, 0, 0, 0.45);
+}
+
+.harmonium-key {
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  font-weight: bold;
+  transition: 0.08s ease;
+}
+
+.harmonium-white {
+  width: 81.25px;
+  height: 170px;
+  background: linear-gradient(#fff8dd, #e9dfbc);
+  border: 2px solid #111;
+  border-radius: 0 0 10px 10px;
+  color: #111;
+  z-index: 1;
+}
+
+.harmonium-white .sargam-name {
+  position: absolute;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 19px;
+}
+
+.harmonium-white .keyboard-name {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #ffcc70;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.harmonium-black {
+  width: 48px;
+  height: 108px;
+  background: linear-gradient(#1d2530, #000);
+  color: white;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  top: 0;
+  left: var(--left);
+  z-index: 5;
+  box-shadow:
+    inset 0 -10px 10px rgba(255, 255, 255, 0.06),
+    0 7px 12px rgba(0, 0, 0, 0.7);
+}
+
+.harmonium-black .sargam-name {
+  position: absolute;
+  bottom: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.harmonium-black .keyboard-name {
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffcc70;
+  font-size: 12px;
+}
+
+/* body lower wooden box */
+.harmonium-body-panel {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 35px;
+  height: 110px;
+  background:
+    linear-gradient(90deg, #6e330d, #bb7628, #d99235, #73350e);
+  border: 4px solid #2b1506;
+  border-radius: 8px;
+  box-shadow: inset 0 0 18px rgba(255, 225, 150, 0.2);
+}
+
+.harmonium-brand {
+  position: absolute;
+  left: 50%;
+  top: 36px;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  opacity: 0.85;
+}
+
+/* golden knobs */
+.harmonium-knobs {
+  position: absolute;
+  top: 18px;
+  left: 85px;
+  right: 85px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.harmonium-knob {
+  width: 22px;
+  height: 22px;
+  background:
+    radial-gradient(circle at 30% 30%, #fff3a3, #d1a633 45%, #735112);
+  border-radius: 50%;
+  border: 2px solid #5c3b08;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.45);
+}
+
+/* side bellows */
+.harmonium-bellows {
+  position: absolute;
+  right: 28px;
+  top: 165px;
+  width: 70px;
+  height: 170px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #2b1306 0px,
+      #2b1306 8px,
+      #a25a1f 9px,
+      #a25a1f 17px
+    );
+  border: 4px solid #2b1506;
+  border-radius: 10px;
+  box-shadow: inset 0 0 14px rgba(0,0,0,0.55);
+  transform-origin: right center;
+}
+
+.harmonium-bellows.pump {
+  animation: bellowsPump 0.18s ease;
+}
+
+/* hanging thread detail */
+.harmonium-thread {
+  position: absolute;
+  width: 3px;
+  height: 78px;
+  background: #f0d9a0;
+  right: 190px;
+  bottom: 47px;
+  border-radius: 8px;
+}
+
+.harmonium-thread::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: -6px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px solid #f0d9a0;
+}
+
+/* active animations */
+.harmonium-white.active {
+  background: #ffcc70;
+  transform: translateY(7px);
+  box-shadow: inset 0 -4px 0 rgba(0,0,0,0.2);
+}
+
+.harmonium-black.active {
+  background: #ffcc70;
+  color: #111;
+  transform: translateY(6px);
+}
+
+.harmonium-black.active .keyboard-name {
+  color: #111;
+}
+
+@keyframes bellowsPump {
+  0% {
+    transform: scaleX(1);
+  }
+  45% {
+    transform: scaleX(0.83);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 980px) {
+  .harmonium {
+    transform: scale(0.78);
+    transform-origin: top left;
+    margin-left: 0;
+  }
+
+  .keyboard-section {
+    min-height: 430px;
+  }
+}
