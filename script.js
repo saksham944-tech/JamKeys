@@ -46,38 +46,38 @@ const simpleNoteFrequencies = {
 
 // White piano keys: 14 keys
 const pianoWhiteKeys = [
-  { key: "`", label: "`", note: "C4", file: "Piano.ff.C4.ogg" },
-  { key: "1", label: "1", note: "D4", file: "Piano.ff.D4.ogg" },
-  { key: "2", label: "2", note: "E4", file: "Piano.ff.E4.ogg" },
-  { key: "3", label: "3", note: "F4", file: "Piano.ff.F4.ogg" },
-  { key: "4", label: "4", note: "G4", file: "Piano.ff.G4.ogg" },
-  { key: "5", label: "5", note: "A4", file: "Piano.ff.A4.ogg" },
-  { key: "6", label: "6", note: "B4", file: "Piano.ff.B4.ogg" },
+  { key: "tab", label: "Tab", note: "C4", file: "Piano.ff.C4.ogg" },
+  { key: "q", label: "Q", note: "D4", file: "Piano.ff.D4.ogg" },
+  { key: "w", label: "W", note: "E4", file: "Piano.ff.E4.ogg" },
+  { key: "e", label: "E", note: "F4", file: "Piano.ff.F4.ogg" },
+  { key: "r", label: "R", note: "G4", file: "Piano.ff.G4.ogg" },
+  { key: "t", label: "T", note: "A4", file: "Piano.ff.A4.ogg" },
+  { key: "y", label: "Y", note: "B4", file: "Piano.ff.B4.ogg" },
 
-  { key: "7", label: "7", note: "C5", file: "Piano.ff.C5.ogg" },
-  { key: "8", label: "8", note: "D5", file: "Piano.ff.D5.ogg" },
-  { key: "9", label: "9", note: "E5", file: "Piano.ff.E5.ogg" },
-  { key: "0", label: "0", note: "F5", file: "Piano.ff.F5.ogg" },
-  { key: "-", label: "-", note: "G5", file: "Piano.ff.G5.ogg" },
-  { key: "=", label: "=", note: "A5", file: "Piano.ff.A5.ogg" },
-  { key: "backspace", label: "Backspace", note: "B5", file: "Piano.ff.B5.ogg" }
+  { key: "u", label: "U", note: "C5", file: "Piano.ff.C5.ogg" },
+  { key: "i", label: "I", note: "D5", file: "Piano.ff.D5.ogg" },
+  { key: "o", label: "O", note: "E5", file: "Piano.ff.E5.ogg" },
+  { key: "p", label: "P", note: "F5", file: "Piano.ff.F5.ogg" },
+  { key: "[", label: "[", note: "G5", file: "Piano.ff.G5.ogg" },
+  { key: "]", label: "]", note: "A5", file: "Piano.ff.A5.ogg" },
+  { key: "\\", label: "\\", note: "B5", file: "Piano.ff.B5.ogg" }
 ];
 
 // Black piano keys: 10 keys
 const pianoBlackKeys = [
-  { key: "tab", label: "Tab", note: "Db4", file: "Piano.ff.Db4.ogg", afterWhiteIndex: 0 },
-  { key: "q", label: "Q", note: "Eb4", file: "Piano.ff.Eb4.ogg", afterWhiteIndex: 1 },
+  { key: "1", label: "1", note: "Db4", file: "Piano.ff.Db4.ogg", afterWhiteIndex: 0 },
+  { key: "2", label: "2", note: "Eb4", file: "Piano.ff.Eb4.ogg", afterWhiteIndex: 1 },
 
-  { key: "e", label: "E", note: "Gb4", file: "Piano.ff.Gb4.ogg", afterWhiteIndex: 3 },
-  { key: "r", label: "R", note: "Ab4", file: "Piano.ff.Ab4.ogg", afterWhiteIndex: 4 },
-  { key: "t", label: "T", note: "Bb4", file: "Piano.ff.Bb4.ogg", afterWhiteIndex: 5 },
+  { key: "4", label: "4", note: "Gb4", file: "Piano.ff.Gb4.ogg", afterWhiteIndex: 3 },
+  { key: "5", label: "5", note: "Ab4", file: "Piano.ff.Ab4.ogg", afterWhiteIndex: 4 },
+  { key: "6", label: "6", note: "Bb4", file: "Piano.ff.Bb4.ogg", afterWhiteIndex: 5 },
 
-  { key: "u", label: "U", note: "Db5", file: "Piano.ff.Db5.ogg", afterWhiteIndex: 7 },
-  { key: "i", label: "I", note: "Eb5", file: "Piano.ff.Eb5.ogg", afterWhiteIndex: 8 },
+  { key: "8", label: "8", note: "Db5", file: "Piano.ff.Db5.ogg", afterWhiteIndex: 7 },
+  { key: "9", label: "9", note: "Eb5", file: "Piano.ff.Eb5.ogg", afterWhiteIndex: 8 },
 
-  { key: "p", label: "P", note: "Gb5", file: "Piano.ff.Gb5.ogg", afterWhiteIndex: 10 },
-  { key: "[", label: "[", note: "Ab5", file: "Piano.ff.Ab5.ogg", afterWhiteIndex: 11 },
-  { key: "]", label: "]", note: "Bb5", file: "Piano.ff.Bb5.ogg", afterWhiteIndex: 12 }
+  { key: "-", label: "-", note: "Gb5", file: "Piano.ff.Gb5.ogg", afterWhiteIndex: 10 },
+  { key: "=", label: "=", note: "Ab5", file: "Piano.ff.Ab5.ogg", afterWhiteIndex: 11 },
+  { key: "backspace", label: "Backspace", note: "Bb5", file: "Piano.ff.Bb5.ogg", afterWhiteIndex: 12 }
 ];
 
 // Combine all piano keys into one easy lookup object
@@ -182,6 +182,68 @@ async function preloadDrumSounds() {
   }
 }
 
+async function preloadTablaSounds() {
+  try {
+    const uniqueFiles = [...new Set(
+      Object.values(tablaPieces).map(function(piece) {
+        return piece.file;
+      })
+    )];
+
+    await Promise.all(
+      uniqueFiles.map(async function(file) {
+        const response = await fetch(`sounds/tabla/${file}`);
+
+        if (!response.ok) {
+          console.warn(`Tabla file missing: ${file}`);
+          return;
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+        tablaBuffers[file] = audioBuffer;
+      })
+    );
+
+    tablaSoundsLoaded = true;
+    console.log("Tabla sounds loaded.");
+  } catch (error) {
+    console.warn("Tabla sounds not loaded. Using generated fallback sounds.", error);
+  }
+}
+
+async function preloadFluteSounds() {
+  try {
+    const uniqueFiles = [...new Set(
+      Object.values(fluteKeyMap).map(function(fluteKey) {
+        return fluteKey.file;
+      })
+    )];
+
+    await Promise.all(
+      uniqueFiles.map(async function(file) {
+        const response = await fetch(`sounds/flute/${file}`);
+
+        if (!response.ok) {
+          console.warn(`Flute file missing: ${file}`);
+          return;
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+        fluteBuffers[file] = audioBuffer;
+      })
+    );
+
+    fluteSoundsLoaded = true;
+    console.log("Flute sounds loaded.");
+  } catch (error) {
+    console.warn("Flute sounds not loaded. Using generated fallback sounds.", error);
+  }
+}
+
 // Drum sounds using generated noise/frequency
 const drumPieces = {
   a: {
@@ -244,16 +306,51 @@ const drumBuffers = {};
 let drumSoundsLoaded = false;
 
 // Tabla sounds
-const tablaKeys = {
-  a: "Dha",
-  s: "Tin",
-  d: "Na",
-  f: "Ge",
-  g: "Dhin",
-  h: "Ta",
-  j: "Tun",
-  k: "Ke"
+const tablaPieces = {
+  a: {
+    name: "Dha",
+    file: "dha.wav",
+    target: "both"
+  },
+  s: {
+    name: "Dhin",
+    file: "dhin.wav",
+    target: "both"
+  },
+  d: {
+    name: "Na",
+    file: "na.wav",
+    target: "dayan"
+  },
+  f: {
+    name: "Tin",
+    file: "tin.wav",
+    target: "dayan"
+  },
+  g: {
+    name: "Te",
+    file: "te.wav",
+    target: "dayan"
+  },
+  h: {
+    name: "Ge",
+    file: "ge.wav",
+    target: "bayan"
+  },
+  j: {
+    name: "Ke",
+    file: "ke.wav",
+    target: "bayan"
+  },
+  k: {
+    name: "Tun",
+    file: "tun.wav",
+    target: "dayan"
+  }
 };
+
+const tablaBuffers = {};
+let tablaSoundsLoaded = false;
 
 const harmoniumWhiteKeys = [
   { key: "a", label: "A", sargam: "Sa", file: "Sa.wav" },
@@ -287,17 +384,42 @@ let activeHarmoniumSource = null;
 let activeHarmoniumGain = null;
 let activeHarmoniumStopTimer = null;
 
+const fluteKeys = [
+  { key: "a", label: "A", sargam: "Sa", file: "Sa.wav", hole: "h1" },
+  { key: "w", label: "W", sargam: "komal Re", file: "komalRe.wav", hole: "h1" },
+  { key: "s", label: "S", sargam: "Re", file: "Re.wav", hole: "h2" },
+  { key: "e", label: "E", sargam: "komal Ga", file: "komalGa.wav", hole: "h2" },
+  { key: "d", label: "D", sargam: "Ga", file: "Ga.wav", hole: "h3" },
+  { key: "f", label: "F", sargam: "Ma", file: "Ma.wav", hole: "h3" },
+  { key: "t", label: "T", sargam: "tivra Ma", file: "tivraMa.wav", hole: "h4" },
+  { key: "g", label: "G", sargam: "Pa", file: "Pa.wav", hole: "h4" },
+  { key: "y", label: "Y", sargam: "komal Dha", file: "komalDha.wav", hole: "h5" },
+  { key: "h", label: "H", sargam: "Dha", file: "Dha.wav", hole: "h5" },
+  { key: "u", label: "U", sargam: "komal Ni", file: "komalNi.wav", hole: "h6" },
+  { key: "j", label: "J", sargam: "Ni", file: "Ni.wav", hole: "h6" },
+  { key: "k", label: "K", sargam: "Sa'", file: "SaHigh.wav", hole: "h6" }
+];
+
+const fluteKeyMap = {};
+
+fluteKeys.forEach(function(fluteKey) {
+  fluteKeyMap[fluteKey.key] = fluteKey;
+});
+
+const fluteBuffers = {};
+let fluteSoundsLoaded = false;
+
 const songs = {
   twinkle: {
     title: "Twinkle Twinkle Little Star",
     instrument: "piano",
-    notes: ["`", "`", "4", "4", "5", "5", "4", "3", "3", "2", "2", "1", "1", "`"]
+    notes: ["tab", "tab", "r", "r", "t", "t", "r", "e", "e", "w", "w", "q", "q", "tab"]
   },
 
   birthday: {
     title: "Happy Birthday",
     instrument: "piano",
-    notes: ["`", "`", "1", "`", "3", "2", "`", "`", "1", "`", "4", "3"]
+    notes: ["tab", "tab", "q", "tab", "e", "w", "tab", "tab", "q", "tab", "r", "e"]
   },
 
   saReGaMa: {
@@ -444,6 +566,80 @@ function renderHarmonium() {
   });
 }
 
+function renderTabla() {
+  keysContainer.className = "tabla-set";
+
+  keysContainer.innerHTML = `
+    <div class="tabla-floor"></div>
+
+    <div class="tabla-drum tabla-dayan">
+      <div class="tabla-cushion"></div>
+      <div class="tabla-shell"></div>
+      <div class="tabla-strap s1"></div>
+      <div class="tabla-strap s2"></div>
+      <div class="tabla-strap s3"></div>
+      <div class="tabla-strap s4"></div>
+      <div class="tabla-strap s5"></div>
+      <div class="tabla-head"></div>
+      <div class="tabla-ring"></div>
+    </div>
+
+    <div class="tabla-drum tabla-bayan">
+      <div class="tabla-cushion"></div>
+      <div class="tabla-shell"></div>
+      <div class="tabla-strap s1"></div>
+      <div class="tabla-strap s2"></div>
+      <div class="tabla-strap s3"></div>
+      <div class="tabla-strap s4"></div>
+      <div class="tabla-strap s5"></div>
+      <div class="tabla-head"></div>
+      <div class="tabla-ring"></div>
+    </div>
+
+    <div class="tabla-pad-row">
+      <button class="tabla-pad" data-key="a">
+        <strong>Dha</strong>
+        <span>A</span>
+      </button>
+
+      <button class="tabla-pad" data-key="s">
+        <strong>Dhin</strong>
+        <span>S</span>
+      </button>
+
+      <button class="tabla-pad" data-key="d">
+        <strong>Na</strong>
+        <span>D</span>
+      </button>
+
+      <button class="tabla-pad" data-key="f">
+        <strong>Tin</strong>
+        <span>F</span>
+      </button>
+
+      <button class="tabla-pad" data-key="g">
+        <strong>Te</strong>
+        <span>G</span>
+      </button>
+
+      <button class="tabla-pad" data-key="h">
+        <strong>Ge</strong>
+        <span>H</span>
+      </button>
+
+      <button class="tabla-pad" data-key="j">
+        <strong>Ke</strong>
+        <span>J</span>
+      </button>
+
+      <button class="tabla-pad" data-key="k">
+        <strong>Tun</strong>
+        <span>K</span>
+      </button>
+    </div>
+  `;
+}
+
 function renderDrums() {
   keysContainer.className = "drum-kit";
 
@@ -491,6 +687,37 @@ function renderDrums() {
     </button>
 
     <div class="kick-pedal"></div>
+  `;
+}
+
+function renderFlute() {
+  keysContainer.className = "flute-stage";
+
+  const flutePadButtons = fluteKeys.map(function(fluteKey) {
+    return `
+      <button class="flute-pad" data-key="${fluteKey.key}">
+        <strong>${fluteKey.sargam}</strong>
+        <span>${fluteKey.label}</span>
+      </button>
+    `;
+  }).join("");
+
+  keysContainer.innerHTML = `
+    <div class="flute-breath"></div>
+
+    <div class="flute-body">
+      <div class="flute-mouth-hole"></div>
+      <div class="flute-hole h1"></div>
+      <div class="flute-hole h2"></div>
+      <div class="flute-hole h3"></div>
+      <div class="flute-hole h4"></div>
+      <div class="flute-hole h5"></div>
+      <div class="flute-hole h6"></div>
+    </div>
+
+    <div class="flute-pad-row">
+      ${flutePadButtons}
+    </div>
   `;
 }
 
@@ -667,6 +894,31 @@ function playGuitarNote(frequency) {
   oscillator.stop(audioContext.currentTime + 0.9);
 }
 
+function playRealTablaSound(key) {
+  const tablaPiece = tablaPieces[key];
+
+  if (!tablaPiece) return;
+
+  const audioBuffer = tablaBuffers[tablaPiece.file];
+
+  // Fallback if real tabla file is missing
+  if (!audioBuffer) {
+    playTablaSound(tablaPiece.name);
+    return;
+  }
+
+  const source = audioContext.createBufferSource();
+  const gainNode = audioContext.createGain();
+
+  source.buffer = audioBuffer;
+  gainNode.gain.value = 0.95;
+
+  source.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  source.start(0);
+}
+
 // Play tabla sound
 function playTablaSound(type) {
   const oscillator = audioContext.createOscillator();
@@ -700,6 +952,36 @@ function playTablaSound(type) {
 
   oscillator.start();
   oscillator.stop(audioContext.currentTime + 0.35);
+}
+
+function playRealFluteSound(key) {
+  const fluteKey = fluteKeyMap[key];
+
+  if (!fluteKey) return;
+
+  const audioBuffer = fluteBuffers[fluteKey.file];
+
+  // Fallback if real file is missing
+  if (!audioBuffer) {
+    const frequency = simpleNoteFrequencies[key];
+
+    if (frequency) {
+      playFluteNote(frequency);
+    }
+
+    return;
+  }
+
+  const source = audioContext.createBufferSource();
+  const gainNode = audioContext.createGain();
+
+  source.buffer = audioBuffer;
+  gainNode.gain.value = 0.9;
+
+  source.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  source.start(0);
 }
 
 // Play flute sound
@@ -762,21 +1044,21 @@ function playKey(key) {
   }
 
   if (selectedInstrument === "tabla") {
-    const tablaType = tablaKeys[key];
+    const tablaPiece = tablaPieces[key];
 
-    if (!tablaType) return;
+    if (!tablaPiece) return;
 
-    playTablaSound(tablaType);
-    statusText.textContent = `Playing Tabla: ${tablaType}`;
+    playRealTablaSound(key);
+    statusText.textContent = `Playing Tabla: ${tablaPiece.name}`;
   }
 
   if (selectedInstrument === "flute") {
-    const frequency = simpleNoteFrequencies[key];
+    const fluteKey = fluteKeyMap[key];
 
-    if (!frequency) return;
+    if (!fluteKey) return;
 
-    playFluteNote(frequency);
-    statusText.textContent = `Playing Flute Note: ${key.toUpperCase()}`;
+    playRealFluteSound(key);
+    statusText.textContent = `Playing Flute: ${fluteKey.sargam} (${fluteKey.label})`;
   }
 
   animateKey(key);
@@ -792,7 +1074,15 @@ function playKey(key) {
 
 // Animate pressed key
 function animateKey(key) {
-  const button = document.querySelector(`[data-key="${key}"]`);
+  const allKeys = document.querySelectorAll("[data-key]");
+
+  let button = null;
+
+  allKeys.forEach(function(element) {
+    if (element.dataset.key === key) {
+      button = element;
+    }
+  });
 
   if (!button) return;
 
@@ -808,6 +1098,62 @@ function animateKey(key) {
         bellows.classList.remove("pump");
       }, 180);
     }
+  }
+
+  if (instrumentSelect.value === "tabla") {
+    const tablaPiece = tablaPieces[key];
+
+    if (tablaPiece) {
+      if (tablaPiece.target === "dayan" || tablaPiece.target === "both") {
+        const dayan = document.querySelector(".tabla-dayan");
+        if (dayan) dayan.classList.add("active");
+      }
+
+      if (tablaPiece.target === "bayan" || tablaPiece.target === "both") {
+        const bayan = document.querySelector(".tabla-bayan");
+        if (bayan) bayan.classList.add("active");
+      }
+
+      setTimeout(() => {
+        const dayan = document.querySelector(".tabla-dayan");
+        const bayan = document.querySelector(".tabla-bayan");
+
+        if (dayan) dayan.classList.remove("active");
+        if (bayan) bayan.classList.remove("active");
+      }, 180);
+    }
+  }
+
+  if (instrumentSelect.value === "flute") {
+    const fluteKey = fluteKeyMap[key];
+
+    const fluteBody = document.querySelector(".flute-body");
+    const fluteBreath = document.querySelector(".flute-breath");
+
+    if (fluteBody) {
+      fluteBody.classList.add("active");
+    }
+
+    if (fluteBreath) {
+      fluteBreath.classList.add("blow");
+    }
+
+    if (fluteKey) {
+      const hole = document.querySelector(`.flute-hole.${fluteKey.hole}`);
+
+      if (hole) {
+        hole.classList.add("active");
+
+        setTimeout(() => {
+          hole.classList.remove("active");
+        }, 180);
+      }
+    }
+
+    setTimeout(() => {
+      if (fluteBody) fluteBody.classList.remove("active");
+      if (fluteBreath) fluteBreath.classList.remove("blow");
+    }, 220);
   }
 
   setTimeout(() => {
@@ -856,17 +1202,18 @@ function isPlayableKey(key) {
   }
 
   if (selectedInstrument === "tabla") {
-    return Boolean(tablaKeys[key]);
+    return Boolean(tablaPieces[key]);
   }
 
   if (selectedInstrument === "harmonium") {
     return Boolean(harmoniumKeyMap[key]);
   }
 
-  if (
-    selectedInstrument === "guitar" ||
-    selectedInstrument === "flute"
-  ) {
+  if (selectedInstrument === "flute") {
+    return Boolean(fluteKeyMap[key]);
+  }
+
+  if (selectedInstrument === "guitar") {
     return Boolean(simpleNoteFrequencies[key]);
   }
 
@@ -926,32 +1273,12 @@ instrumentSelect.addEventListener("change", function() {
 
   if (selectedInstrument === "tabla") {
     instrumentTitle.textContent = "Tabla Mode";
-    keysContainer.className = "keys";
-    keysContainer.innerHTML = `
-      <button class="music-key" data-key="a">A<br><span>Dha</span></button>
-      <button class="music-key" data-key="s">S<br><span>Tin</span></button>
-      <button class="music-key" data-key="d">D<br><span>Na</span></button>
-      <button class="music-key" data-key="f">F<br><span>Ge</span></button>
-      <button class="music-key" data-key="g">G<br><span>Dhin</span></button>
-      <button class="music-key" data-key="h">H<br><span>Ta</span></button>
-      <button class="music-key" data-key="j">J<br><span>Tun</span></button>
-      <button class="music-key" data-key="k">K<br><span>Ke</span></button>
-    `;
+    renderTabla();
   }
 
   if (selectedInstrument === "flute") {
     instrumentTitle.textContent = "Flute Mode";
-    keysContainer.className = "keys";
-    keysContainer.innerHTML = `
-      <button class="music-key" data-key="a">A<br><span>Sa</span></button>
-      <button class="music-key" data-key="s">S<br><span>Re</span></button>
-      <button class="music-key" data-key="d">D<br><span>Ga</span></button>
-      <button class="music-key" data-key="f">F<br><span>Ma</span></button>
-      <button class="music-key" data-key="g">G<br><span>Pa</span></button>
-      <button class="music-key" data-key="h">H<br><span>Dha</span></button>
-      <button class="music-key" data-key="j">J<br><span>Ni</span></button>
-      <button class="music-key" data-key="k">K<br><span>Sa+</span></button>
-    `;
+    renderFlute();
   }
 
   statusText.textContent = `Switched to ${selectedInstrument} mode.`;
@@ -1203,3 +1530,5 @@ renderPiano();
 preloadPianoSounds();
 preloadDrumSounds();
 preloadHarmoniumSounds()
+preloadTablaSounds();
+preloadFluteSounds();

@@ -1134,3 +1134,624 @@ footer {
     min-height: 430px;
   }
 }
+
+.black-key small {
+  max-width: 70px;
+  white-space: nowrap;
+  transform: scale(0.85);
+  transform-origin: center;
+}
+
+.black-key[data-key="backspace"] small {
+  font-size: 10px;
+  transform: scale(0.75);
+}
+
+/* ================= TABLA UI ================= */
+
+.tabla-set {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 204, 112, 0.18), transparent 45%),
+    linear-gradient(135deg, #2b1a0d, #151018 55%, #0d0d14);
+  box-shadow:
+    inset 0 0 35px rgba(255, 204, 112, 0.08),
+    0 22px 35px rgba(0,0,0,0.45);
+}
+
+.tabla-set::before {
+  content: "Tabla Mode: A Dha • S Dhin • D Na • F Tin • G Te • H Ge • J Ke • K Tun";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffcc70;
+  background: rgba(0,0,0,0.32);
+  border: 1px solid rgba(255, 204, 112, 0.25);
+  padding: 9px 15px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.tabla-floor {
+  position: absolute;
+  width: 760px;
+  height: 90px;
+  left: 70px;
+  bottom: 40px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, rgba(112, 44, 20, 0.9), rgba(45, 18, 12, 0.95));
+  filter: blur(0.2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.55);
+}
+
+.tabla-drum {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.08s ease, filter 0.08s ease;
+  background: transparent;
+}
+
+/* left smaller tabla - dayan */
+.tabla-dayan {
+  width: 260px;
+  height: 330px;
+  left: 170px;
+  top: 120px;
+}
+
+/* right bigger tabla - bayan */
+.tabla-bayan {
+  width: 330px;
+  height: 360px;
+  left: 430px;
+  top: 95px;
+}
+
+/* drum body */
+.tabla-shell {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  top: 28%;
+  bottom: 6%;
+  border-radius: 42% 42% 28% 28%;
+  background:
+    linear-gradient(90deg, #351b0e, #8a4a21, #d8c2a3, #6f4b35, #2c1a10);
+  box-shadow:
+    inset -18px 0 24px rgba(0,0,0,0.4),
+    inset 15px 0 20px rgba(255,255,255,0.18),
+    0 16px 22px rgba(0,0,0,0.5);
+}
+
+.tabla-bayan .tabla-shell {
+  background:
+    linear-gradient(90deg, #252525, #8a806e, #dad0ba, #6b6258, #222);
+}
+
+/* drum head */
+.tabla-head {
+  position: absolute;
+  left: 8%;
+  top: 5%;
+  width: 84%;
+  height: 42%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #1f1f1f 0%, #383838 13%, transparent 14%),
+    radial-gradient(circle at 50% 50%, #f6efe3 0%, #f6efe3 45%, #d8c7aa 46%, #b99f76 62%, #eee0c5 63%);
+  border: 8px solid #d7c08d;
+  box-shadow:
+    inset 0 0 18px rgba(0,0,0,0.22),
+    0 8px 15px rgba(0,0,0,0.4);
+}
+
+.tabla-bayan .tabla-head {
+  left: 6%;
+  top: 3%;
+  width: 88%;
+  height: 45%;
+}
+
+/* outer rope ring */
+.tabla-ring {
+  position: absolute;
+  left: 4%;
+  top: 2%;
+  width: 92%;
+  height: 48%;
+  border-radius: 50%;
+  border: 7px dashed #e0d3aa;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* vertical straps */
+.tabla-strap {
+  position: absolute;
+  width: 8px;
+  height: 58%;
+  top: 28%;
+  background: linear-gradient(#222, #060606);
+  border-radius: 10px;
+  box-shadow: 0 0 4px rgba(255,255,255,0.22);
+}
+
+.tabla-strap.s1 { left: 18%; transform: rotate(-15deg); }
+.tabla-strap.s2 { left: 32%; transform: rotate(-7deg); }
+.tabla-strap.s3 { left: 49%; transform: rotate(0deg); }
+.tabla-strap.s4 { left: 66%; transform: rotate(7deg); }
+.tabla-strap.s5 { left: 80%; transform: rotate(15deg); }
+
+/* red cushions */
+.tabla-cushion {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  height: 70px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at center, #9a342b, #4a1515 75%);
+  box-shadow:
+    inset 0 8px 14px rgba(255,255,255,0.08),
+    0 9px 18px rgba(0,0,0,0.5);
+  z-index: 0;
+}
+
+.tabla-bayan .tabla-cushion {
+  height: 82px;
+}
+
+/* bol hit zones */
+.tabla-zone {
+  position: absolute;
+  z-index: 15;
+  border: 2px solid rgba(255, 204, 112, 0.35);
+  background: rgba(255, 204, 112, 0.08);
+  color: white;
+  border-radius: 18px;
+  padding: 8px 11px;
+  font-weight: bold;
+  font-size: 13px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 8px 14px rgba(0,0,0,0.25);
+}
+
+.tabla-zone span {
+  display: block;
+  color: #ffcc70;
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.zone-na {
+  left: 235px;
+  top: 170px;
+}
+
+.zone-tin {
+  left: 318px;
+  top: 180px;
+}
+
+.zone-te {
+  left: 260px;
+  top: 245px;
+}
+
+.zone-tun {
+  left: 340px;
+  top: 255px;
+}
+
+.zone-ge {
+  left: 515px;
+  top: 175px;
+}
+
+.zone-ke {
+  left: 640px;
+  top: 195px;
+}
+
+.zone-dha {
+  left: 387px;
+  top: 360px;
+}
+
+.zone-dhin {
+  left: 465px;
+  top: 325px;
+}
+
+/* active visual feedback */
+.tabla-drum.active .tabla-head,
+.tabla-zone.active {
+  filter: brightness(1.25);
+  box-shadow:
+    0 0 28px rgba(255, 204, 112, 0.75),
+    0 8px 15px rgba(0,0,0,0.4);
+}
+
+.tabla-drum.active {
+  animation: tablaDrumHit 0.15s ease;
+}
+
+.tabla-zone.active {
+  animation: tablaZoneHit 0.14s ease;
+}
+
+@keyframes tablaDrumHit {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.965) translateY(5px); }
+  100% { transform: scale(1); }
+}
+
+@keyframes tablaZoneHit {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 980px) {
+  .tabla-set {
+    transform: scale(0.78);
+    transform-origin: top left;
+    margin-left: 0;
+  }
+
+  .keyboard-section {
+    min-height: 430px;
+  }
+}
+
+/* ================= CLEAN TABLA CONTROL PADS ================= */
+
+.tabla-set {
+  height: 570px;
+}
+
+.tabla-set::before {
+  content: "Tabla Mode";
+  font-size: 15px;
+  padding: 8px 18px;
+}
+
+/* make tabla drums visual-only but still animate */
+.tabla-drum {
+  pointer-events: none;
+}
+
+/* bottom control row */
+.tabla-pad-row {
+  position: absolute;
+  left: 45px;
+  right: 45px;
+  bottom: 22px;
+  height: 82px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 30;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 204, 112, 0.22);
+  backdrop-filter: blur(4px);
+}
+
+.tabla-pad {
+  width: 85px;
+  height: 58px;
+  border: 1px solid rgba(255, 204, 112, 0.45);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 204, 112, 0.18), rgba(90, 42, 16, 0.35));
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow:
+    inset 0 0 10px rgba(255, 204, 112, 0.08),
+    0 8px 12px rgba(0, 0, 0, 0.28);
+  transition: 0.08s ease;
+}
+
+.tabla-pad strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.tabla-pad span {
+  display: inline-block;
+  background: #111;
+  color: #ffcc70;
+  padding: 3px 9px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+.tabla-pad.active {
+  transform: translateY(5px) scale(0.95);
+  background: #ffcc70;
+  color: #111;
+  box-shadow:
+    0 0 24px rgba(255, 204, 112, 0.75),
+    0 8px 12px rgba(0, 0, 0, 0.28);
+}
+
+.tabla-pad.active span {
+  background: #111;
+  color: #ffcc70;
+}
+
+/* move carpet slightly up so it does not collide with pad row */
+.tabla-floor {
+  bottom: 105px;
+}
+
+/* adjust drums slightly up */
+.tabla-dayan {
+  top: 105px;
+}
+
+.tabla-bayan {
+  top: 82px;
+}
+
+/* old tabla-zone is not used anymore, but hide it if any old cache remains */
+.tabla-zone {
+  display: none;
+}
+
+/* ================= FLUTE UI ================= */
+
+.flute-stage {
+  position: relative;
+  width: 920px;
+  height: 430px;
+  margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 204, 112, 0.12), transparent 45%),
+    linear-gradient(135deg, #101018, #1b1624 55%, #0d0d14);
+  box-shadow:
+    inset 0 0 35px rgba(255, 204, 112, 0.08),
+    0 22px 35px rgba(0, 0, 0, 0.45);
+}
+
+.flute-stage::before {
+  content: "Flute Mode";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffcc70;
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 204, 112, 0.25);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  z-index: 20;
+}
+
+.flute-body {
+  position: absolute;
+  width: 760px;
+  height: 82px;
+  left: 80px;
+  top: 135px;
+  border-radius: 60px;
+  background:
+    linear-gradient(
+      90deg,
+      #704014 0%,
+      #d8a54f 12%,
+      #f3cc7a 28%,
+      #b97825 48%,
+      #e4b65e 68%,
+      #7b4818 100%
+    );
+  box-shadow:
+    inset 0 12px 16px rgba(255, 255, 255, 0.22),
+    inset 0 -16px 18px rgba(50, 20, 5, 0.45),
+    0 18px 30px rgba(0, 0, 0, 0.45);
+  transform: rotate(-2deg);
+}
+
+.flute-body::before,
+.flute-body::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 18px;
+  height: 66px;
+  border-radius: 20px;
+  background:
+    linear-gradient(#5a2e0d, #e8ba61, #5a2e0d);
+  box-shadow: 0 0 0 2px rgba(60, 25, 8, 0.4);
+}
+
+.flute-body::before {
+  left: 28px;
+}
+
+.flute-body::after {
+  right: 28px;
+}
+
+.flute-mouth-hole {
+  position: absolute;
+  width: 48px;
+  height: 28px;
+  left: 100px;
+  top: 27px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #160b03 0%, #2a1406 60%, #8d571d 100%);
+  box-shadow:
+    inset 0 4px 8px rgba(0,0,0,0.85),
+    0 1px 0 rgba(255,255,255,0.3);
+}
+
+.flute-hole {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  top: 25px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #080503 0%, #201005 62%, #915d22 100%);
+  box-shadow:
+    inset 0 5px 8px rgba(0,0,0,0.9),
+    0 1px 0 rgba(255,255,255,0.25);
+  transition: 0.08s ease;
+}
+
+.flute-hole.h1 { left: 245px; }
+.flute-hole.h2 { left: 325px; }
+.flute-hole.h3 { left: 405px; }
+.flute-hole.h4 { left: 485px; }
+.flute-hole.h5 { left: 565px; }
+.flute-hole.h6 { left: 645px; }
+
+.flute-breath {
+  position: absolute;
+  width: 150px;
+  height: 70px;
+  left: 20px;
+  top: 138px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 204, 112, 0.38), transparent 65%);
+  opacity: 0;
+  filter: blur(6px);
+  transform: rotate(-2deg);
+}
+
+.flute-breath.blow {
+  animation: fluteBlow 0.22s ease;
+}
+
+.flute-body.active {
+  animation: flutePulse 0.18s ease;
+}
+
+.flute-hole.active {
+  background: #ffcc70;
+  box-shadow:
+    0 0 20px rgba(255, 204, 112, 0.95),
+    inset 0 3px 8px rgba(0,0,0,0.4);
+}
+
+/* bottom note pads */
+.flute-pad-row {
+  position: absolute;
+  left: 45px;
+  right: 45px;
+  bottom: 35px;
+  min-height: 98px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  z-index: 30;
+  padding: 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 204, 112, 0.22);
+  backdrop-filter: blur(4px);
+}
+
+.flute-pad {
+  width: 68px;
+  height: 60px;
+  border: 1px solid rgba(255, 204, 112, 0.45);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 204, 112, 0.18), rgba(90, 42, 16, 0.35));
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow:
+    inset 0 0 10px rgba(255, 204, 112, 0.08),
+    0 8px 12px rgba(0, 0, 0, 0.28);
+  transition: 0.08s ease;
+}
+
+.flute-pad strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.flute-pad span {
+  display: inline-block;
+  background: #111;
+  color: #ffcc70;
+  padding: 3px 8px;
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+.flute-pad.active {
+  transform: translateY(5px) scale(0.95);
+  background: #ffcc70;
+  color: #111;
+  box-shadow:
+    0 0 24px rgba(255, 204, 112, 0.75),
+    0 8px 12px rgba(0, 0, 0, 0.28);
+}
+
+.flute-pad.active span {
+  background: #111;
+  color: #ffcc70;
+}
+
+@keyframes flutePulse {
+  0% { transform: rotate(-2deg) scale(1); }
+  45% { transform: rotate(-2deg) scale(0.985); }
+  100% { transform: rotate(-2deg) scale(1); }
+}
+
+@keyframes fluteBlow {
+  0% {
+    opacity: 0;
+    transform: translateX(0) rotate(-2deg) scale(0.8);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateX(50px) rotate(-2deg) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100px) rotate(-2deg) scale(1.3);
+  }
+}
+
+@media (max-width: 980px) {
+  .flute-stage {
+    transform: scale(0.78);
+    transform-origin: top left;
+    margin-left: 0;
+  }
+
+  .keyboard-section {
+    min-height: 360px;
+  }
+}
