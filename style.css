@@ -1516,211 +1516,6 @@ footer {
   display: none;
 }
 
-/* ================= FLUTE UI ================= */
-
-.flute-stage {
-  position: relative;
-  width: 920px;
-  height: 430px;
-  margin: 0 auto;
-  border-radius: 28px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(255, 204, 112, 0.12), transparent 45%),
-    linear-gradient(135deg, #101018, #1b1624 55%, #0d0d14);
-  box-shadow:
-    inset 0 0 35px rgba(255, 204, 112, 0.08),
-    0 22px 35px rgba(0, 0, 0, 0.45);
-}
-
-.flute-stage::before {
-  content: "Flute Mode";
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ffcc70;
-  background: rgba(0, 0, 0, 0.32);
-  border: 1px solid rgba(255, 204, 112, 0.25);
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 14px;
-  z-index: 20;
-}
-
-.flute-body {
-  position: absolute;
-  width: 760px;
-  height: 82px;
-  left: 80px;
-  top: 135px;
-  border-radius: 60px;
-  background:
-    linear-gradient(
-      90deg,
-      #704014 0%,
-      #d8a54f 12%,
-      #f3cc7a 28%,
-      #b97825 48%,
-      #e4b65e 68%,
-      #7b4818 100%
-    );
-  box-shadow:
-    inset 0 12px 16px rgba(255, 255, 255, 0.22),
-    inset 0 -16px 18px rgba(50, 20, 5, 0.45),
-    0 18px 30px rgba(0, 0, 0, 0.45);
-  transform: rotate(-2deg);
-}
-
-.flute-body::before,
-.flute-body::after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  width: 18px;
-  height: 66px;
-  border-radius: 20px;
-  background:
-    linear-gradient(#5a2e0d, #e8ba61, #5a2e0d);
-  box-shadow: 0 0 0 2px rgba(60, 25, 8, 0.4);
-}
-
-.flute-body::before {
-  left: 28px;
-}
-
-.flute-body::after {
-  right: 28px;
-}
-
-.flute-mouth-hole {
-  position: absolute;
-  width: 48px;
-  height: 28px;
-  left: 100px;
-  top: 27px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at center, #160b03 0%, #2a1406 60%, #8d571d 100%);
-  box-shadow:
-    inset 0 4px 8px rgba(0,0,0,0.85),
-    0 1px 0 rgba(255,255,255,0.3);
-}
-
-.flute-hole {
-  position: absolute;
-  width: 33px;
-  height: 33px;
-  top: 25px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at center, #080503 0%, #201005 62%, #915d22 100%);
-  box-shadow:
-    inset 0 5px 8px rgba(0,0,0,0.9),
-    0 1px 0 rgba(255,255,255,0.25);
-  transition: 0.08s ease;
-}
-
-.flute-hole.h1 { left: 245px; }
-.flute-hole.h2 { left: 325px; }
-.flute-hole.h3 { left: 405px; }
-.flute-hole.h4 { left: 485px; }
-.flute-hole.h5 { left: 565px; }
-.flute-hole.h6 { left: 645px; }
-
-.flute-breath {
-  position: absolute;
-  width: 150px;
-  height: 70px;
-  left: 20px;
-  top: 138px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 204, 112, 0.38), transparent 65%);
-  opacity: 0;
-  filter: blur(6px);
-  transform: rotate(-2deg);
-}
-
-.flute-breath.blow {
-  animation: fluteBlow 0.22s ease;
-}
-
-.flute-body.active {
-  animation: flutePulse 0.18s ease;
-}
-
-.flute-hole.active {
-  background: #ffcc70;
-  box-shadow:
-    0 0 20px rgba(255, 204, 112, 0.95),
-    inset 0 3px 8px rgba(0,0,0,0.4);
-}
-
-/* bottom note pads */
-.flute-pad-row {
-  position: absolute;
-  left: 45px;
-  right: 45px;
-  bottom: 35px;
-  min-height: 98px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  flex-wrap: wrap;
-  z-index: 30;
-  padding: 12px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid rgba(255, 204, 112, 0.22);
-  backdrop-filter: blur(4px);
-}
-
-.flute-pad {
-  width: 68px;
-  height: 60px;
-  border: 1px solid rgba(255, 204, 112, 0.45);
-  border-radius: 14px;
-  background:
-    linear-gradient(180deg, rgba(255, 204, 112, 0.18), rgba(90, 42, 16, 0.35));
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow:
-    inset 0 0 10px rgba(255, 204, 112, 0.08),
-    0 8px 12px rgba(0, 0, 0, 0.28);
-  transition: 0.08s ease;
-}
-
-.flute-pad strong {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-
-.flute-pad span {
-  display: inline-block;
-  background: #111;
-  color: #ffcc70;
-  padding: 3px 8px;
-  border-radius: 7px;
-  font-size: 12px;
-}
-
-.flute-pad.active {
-  transform: translateY(5px) scale(0.95);
-  background: #ffcc70;
-  color: #111;
-  box-shadow:
-    0 0 24px rgba(255, 204, 112, 0.75),
-    0 8px 12px rgba(0, 0, 0, 0.28);
-}
-
-.flute-pad.active span {
-  background: #111;
-  color: #ffcc70;
-}
-
 @keyframes flutePulse {
   0% { transform: rotate(-2deg) scale(1); }
   45% { transform: rotate(-2deg) scale(0.985); }
@@ -1753,5 +1548,219 @@ footer {
 
   .keyboard-section {
     min-height: 360px;
+  }
+}
+
+/* ================= FLUTE UI ================= */
+
+.flute-ui {
+  width: 920px;
+  margin: 0 auto;
+  padding: 34px 34px 30px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at center, rgba(255, 204, 112, 0.08), transparent 55%),
+    linear-gradient(180deg, #17172a, #0f1020);
+  box-shadow:
+    inset 0 0 28px rgba(255, 204, 112, 0.06),
+    0 18px 30px rgba(0, 0, 0, 0.35);
+}
+
+.flute-stage {
+  width: 100%;
+  min-height: 420px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at center, rgba(255, 204, 112, 0.12), transparent 40%),
+    linear-gradient(90deg, #1d1320, #2a1e22 45%, #171226);
+  border: 1px solid rgba(255, 204, 112, 0.12);
+  padding: 28px 24px 34px;
+  box-shadow:
+    inset 0 0 28px rgba(0, 0, 0, 0.35),
+    0 16px 25px rgba(0, 0, 0, 0.3);
+}
+
+.flute-title-badge {
+  width: fit-content;
+  margin: 0 auto 26px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: #ffcc70;
+  font-weight: bold;
+  font-size: 15px;
+  border: 1px solid rgba(255, 204, 112, 0.28);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.bansuri-wrap {
+  position: relative;
+  width: 760px;
+  height: 135px;
+  margin: 0 auto 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bansuri-shadow {
+  position: absolute;
+  width: 700px;
+  height: 20px;
+  bottom: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(12px);
+}
+
+.bansuri {
+  position: relative;
+  width: 700px;
+  height: 72px;
+  border-radius: 40px;
+  background:
+    linear-gradient(
+      90deg,
+      #9a5d16 0%,
+      #e0b15e 10%,
+      #f2cd7f 26%,
+      #d39d4e 40%,
+      #efc775 55%,
+      #c58639 72%,
+      #e5b869 88%,
+      #8c5417 100%
+    );
+  border: 3px solid rgba(94, 49, 10, 0.9);
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.18),
+    inset 0 -10px 18px rgba(75, 32, 5, 0.22),
+    0 10px 18px rgba(0, 0, 0, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bansuri::before,
+.bansuri::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #855014, #c69044, #7a4711);
+  border: 2px solid rgba(88, 44, 8, 0.85);
+}
+
+.bansuri::before {
+  left: 14px;
+}
+
+.bansuri::after {
+  right: 14px;
+}
+
+.flute-mouth-hole {
+  position: absolute;
+  left: 86px;
+  width: 48px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #120b07 0%, #2e180c 70%, #080606 100%);
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.08);
+}
+
+.flute-holes {
+  position: absolute;
+  left: 185px;
+  right: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flute-hole {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0d0908 0%, #1b110c 72%, #050404 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(255,255,255,0.08),
+    0 0 0 2px rgba(82, 45, 10, 0.22);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.flute-hole.active {
+  transform: scale(0.88);
+  background: radial-gradient(circle, #ffcc70 0%, #d79b37 72%, #7e4f12 100%);
+  box-shadow:
+    0 0 18px rgba(255, 204, 112, 0.7),
+    0 0 0 3px rgba(255, 204, 112, 0.24);
+}
+
+.flute-note-strip {
+  width: 100%;
+  max-width: 830px;
+  margin: 0 auto;
+  padding: 18px 18px 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 204, 112, 0.18);
+  background: rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.flute-note-btn {
+  min-width: 68px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 204, 112, 0.28);
+  background: linear-gradient(180deg, #6b4a2b, #2b1e1e);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.12s ease;
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.22);
+}
+
+.flute-note-btn .note-label {
+  display: block;
+  font-size: 13px;
+  color: #f5f5f5;
+  margin-bottom: 4px;
+}
+
+.flute-note-btn .note-key {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #111;
+  color: #ffcc70;
+  font-size: 12px;
+}
+
+.flute-note-btn.active {
+  transform: translateY(5px) scale(0.96);
+  background: linear-gradient(180deg, #ffcc70, #d49022);
+  color: #111;
+  box-shadow: 0 0 20px rgba(255, 204, 112, 0.55);
+}
+
+.flute-note-btn.active .note-key {
+  background: #111;
+  color: #ffcc70;
+}
+
+@media (max-width: 980px) {
+  .flute-ui {
+    transform: scale(0.82);
+    transform-origin: top left;
+    margin-left: 0;
+  }
+
+  .keyboard-section {
+    min-height: 470px;
   }
 }

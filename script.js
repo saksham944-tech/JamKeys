@@ -26,6 +26,10 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const pianoBuffers = {};
 let pianoSoundsLoaded = false;
 
+let activeFluteSource = null;
+let activeFluteGain = null;
+let activeFluteStopTimer = null;
+
 // Recording variables
 let isRecording = false;
 let recordedNotes = [];
@@ -213,37 +217,6 @@ async function preloadTablaSounds() {
   }
 }
 
-async function preloadFluteSounds() {
-  try {
-    const uniqueFiles = [...new Set(
-      Object.values(fluteKeyMap).map(function(fluteKey) {
-        return fluteKey.file;
-      })
-    )];
-
-    await Promise.all(
-      uniqueFiles.map(async function(file) {
-        const response = await fetch(`sounds/flute/${file}`);
-
-        if (!response.ok) {
-          console.warn(`Flute file missing: ${file}`);
-          return;
-        }
-
-        const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-
-        fluteBuffers[file] = audioBuffer;
-      })
-    );
-
-    fluteSoundsLoaded = true;
-    console.log("Flute sounds loaded.");
-  } catch (error) {
-    console.warn("Flute sounds not loaded. Using generated fallback sounds.", error);
-  }
-}
-
 // Drum sounds using generated noise/frequency
 const drumPieces = {
   a: {
@@ -408,6 +381,37 @@ fluteKeys.forEach(function(fluteKey) {
 
 const fluteBuffers = {};
 let fluteSoundsLoaded = false;
+
+async function preloadFluteSounds() {
+  try {
+    const uniqueFiles = [...new Set(
+      fluteKeys.map(function(fluteKey) {
+        return fluteKey.file;
+      })
+    )];
+
+    await Promise.all(
+      uniqueFiles.map(async function(file) {
+        const response = await fetch(`sounds/flute/${file}`);
+
+        if (!response.ok) {
+          console.warn(`Flute file missing: ${file}`);
+          return;
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+        fluteBuffers[file] = audioBuffer;
+      })
+    );
+
+    fluteSoundsLoaded = true;
+    console.log("Flute sounds loaded.");
+  } catch (error) {
+    console.warn("Flute sounds not loaded properly.", error);
+  }
+}
 
 const songs = {
   twinkle: {
@@ -691,32 +695,60 @@ function renderDrums() {
 }
 
 function renderFlute() {
-  keysContainer.className = "flute-stage";
+  keysContainer.className = "flute-ui";
 
-  const flutePadButtons = fluteKeys.map(function(fluteKey) {
+  const fluteNotes = [
+    { key: "a", sargam: "Sa" },
+    { key: "w", sargam: "komal Re" },
+    { key: "s", sargam: "Re" },
+    { key: "e", sargam: "komal Ga" },
+    { key: "d", sargam: "Ga" },
+    { key: "f", sargam: "Ma" },
+    { key: "t", sargam: "tivra Ma" },
+    { key: "g", sargam: "Pa" },
+    { key: "y", sargam: "komal Dha" },
+    { key: "h", sargam: "Dha" },
+    { key: "u", sargam: "komal Ni" },
+    { key: "j", sargam: "Ni" },
+    { key: "k", sargam: "Sa'" }
+  ];
+
+  const noteButtons = fluteNotes.map(function(note) {
     return `
-      <button class="flute-pad" data-key="${fluteKey.key}">
-        <strong>${fluteKey.sargam}</strong>
-        <span>${fluteKey.label}</span>
+      <button class="flute-note-btn" data-key="${note.key}">
+        <span class="note-label">${note.sargam}</span>
+        <span class="note-key">${note.key.toUpperCase()}</span>
       </button>
     `;
   }).join("");
 
+  const holes = `
+    <div class="flute-hole" data-hole="1"></div>
+    <div class="flute-hole" data-hole="2"></div>
+    <div class="flute-hole" data-hole="3"></div>
+    <div class="flute-hole" data-hole="4"></div>
+    <div class="flute-hole" data-hole="5"></div>
+    <div class="flute-hole" data-hole="6"></div>
+    <div class="flute-hole" data-hole="7"></div>
+  `;
+
   keysContainer.innerHTML = `
-    <div class="flute-breath"></div>
+    <div class="flute-stage">
+      <div class="flute-title-badge">Bansuri / Flute Mode</div>
 
-    <div class="flute-body">
-      <div class="flute-mouth-hole"></div>
-      <div class="flute-hole h1"></div>
-      <div class="flute-hole h2"></div>
-      <div class="flute-hole h3"></div>
-      <div class="flute-hole h4"></div>
-      <div class="flute-hole h5"></div>
-      <div class="flute-hole h6"></div>
-    </div>
+      <div class="bansuri-wrap">
+        <div class="bansuri-shadow"></div>
+        <div class="bansuri">
+          <div class="flute-mouth-hole"></div>
+          <div class="flute-holes">
+            ${holes}
+          </div>
+        </div>
+      </div>
 
-    <div class="flute-pad-row">
-      ${flutePadButtons}
+      <div class="flute-note-strip">
+        ${noteButtons}
+      </div>
     </div>
   `;
 }
@@ -828,6 +860,30 @@ function stopActiveHarmoniumNote() {
 
   activeHarmoniumSource = null;
   activeHarmoniumGain = null;
+}
+
+function stopActiveFluteNote() {
+  if (activeFluteStopTimer) {
+    clearTimeout(activeFluteStopTimer);
+    activeFluteStopTimer = null;
+  }
+
+  if (activeFluteSource && activeFluteGain) {
+    try {
+      const now = audioContext.currentTime;
+
+      activeFluteGain.gain.cancelScheduledValues(now);
+      activeFluteGain.gain.setValueAtTime(activeFluteGain.gain.value, now);
+      activeFluteGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+      activeFluteSource.stop(now + 0.04);
+    } catch (error) {
+      // ignore
+    }
+  }
+
+  activeFluteSource = null;
+  activeFluteGain = null;
 }
 
 function playRealHarmoniumSound(key) {
@@ -959,29 +1015,37 @@ function playRealFluteSound(key) {
 
   if (!fluteKey) return;
 
+  // stop previous note first
+  stopActiveFluteNote();
+
   const audioBuffer = fluteBuffers[fluteKey.file];
 
-  // Fallback if real file is missing
   if (!audioBuffer) {
-    const frequency = simpleNoteFrequencies[key];
-
-    if (frequency) {
-      playFluteNote(frequency);
-    }
-
+    statusText.textContent = `Missing flute sound: ${fluteKey.file}`;
     return;
   }
 
   const source = audioContext.createBufferSource();
   const gainNode = audioContext.createGain();
+  const now = audioContext.currentTime;
 
   source.buffer = audioBuffer;
-  gainNode.gain.value = 0.9;
+
+  gainNode.gain.setValueAtTime(0.001, now);
+  gainNode.gain.exponentialRampToValueAtTime(0.95, now + 0.02);
 
   source.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  source.start(0);
+  source.start(now);
+
+  activeFluteSource = source;
+  activeFluteGain = gainNode;
+
+  // auto stop after max 3 sec
+  activeFluteStopTimer = setTimeout(function() {
+    stopActiveFluteNote();
+  }, 3000);
 }
 
 // Play flute sound
@@ -1125,35 +1189,45 @@ function animateKey(key) {
   }
 
   if (instrumentSelect.value === "flute") {
-    const fluteKey = fluteKeyMap[key];
-
-    const fluteBody = document.querySelector(".flute-body");
-    const fluteBreath = document.querySelector(".flute-breath");
-
-    if (fluteBody) {
-      fluteBody.classList.add("active");
-    }
-
-    if (fluteBreath) {
-      fluteBreath.classList.add("blow");
-    }
-
-    if (fluteKey) {
-      const hole = document.querySelector(`.flute-hole.${fluteKey.hole}`);
-
-      if (hole) {
-        hole.classList.add("active");
-
+    const fluteButtons = document.querySelectorAll(".flute-note-btn");
+    fluteButtons.forEach(function(btn) {
+      if (btn.dataset.key === key) {
+        btn.classList.add("active");
         setTimeout(() => {
-          hole.classList.remove("active");
+          btn.classList.remove("active");
         }, 180);
       }
-    }
+    });
 
-    setTimeout(() => {
-      if (fluteBody) fluteBody.classList.remove("active");
-      if (fluteBreath) fluteBreath.classList.remove("blow");
-    }, 220);
+    const holes = document.querySelectorAll(".flute-hole");
+    holes.forEach(function(hole, index) {
+      hole.classList.remove("active");
+    });
+
+    const fluteFingerMap = {
+      a: [1,1,1,1,1,1,1],
+      w: [1,1,1,1,1,1,0],
+      s: [1,1,1,1,1,0,0],
+      e: [1,1,1,1,0,0,0],
+      d: [1,1,1,0,0,0,0],
+      f: [1,1,0,0,0,0,0],
+      t: [1,0,1,0,0,0,0],
+      g: [1,0,0,0,0,0,0],
+      y: [0,1,1,0,0,0,0],
+      h: [0,1,0,0,0,0,0],
+      u: [0,0,1,0,0,0,0],
+      j: [0,0,0,0,0,0,0],
+      k: [0,0,0,0,0,0,1]
+    };
+
+    const pattern = fluteFingerMap[key];
+    if (pattern) {
+      holes.forEach(function(hole, index) {
+        if (pattern[index]) {
+          hole.classList.add("active");
+        }
+      });
+    }
   }
 
   setTimeout(() => {
@@ -1236,6 +1310,9 @@ keysContainer.addEventListener("click", function(event) {
 
 // Change instrument UI
 instrumentSelect.addEventListener("change", function() {
+  stopActiveHarmoniumNote();
+  stopActiveFluteNote();
+
   const selectedInstrument = instrumentSelect.value;
   stopActiveHarmoniumNote();
 
@@ -1529,6 +1606,6 @@ resetSongBtn.addEventListener("click", resetSongMode);
 renderPiano();
 preloadPianoSounds();
 preloadDrumSounds();
-preloadHarmoniumSounds()
+preloadHarmoniumSounds();
 preloadTablaSounds();
 preloadFluteSounds();
