@@ -1603,6 +1603,110 @@ function resetSongMode() {
 
 startSongBtn.addEventListener("click", startSelectedSong);
 resetSongBtn.addEventListener("click", resetSongMode);
+
+// Navbar functionality
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const navLinks = document.querySelectorAll(".nav-link");
+
+const loginNavBtn = document.getElementById("loginNavBtn");
+const loginModal = document.getElementById("loginModal");
+const closeLoginBtn = document.getElementById("closeLoginBtn");
+const loginNameInput = document.getElementById("loginNameInput");
+const saveLoginBtn = document.getElementById("saveLoginBtn");
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", function() {
+    navMenu.classList.toggle("show");
+  });
+}
+
+navLinks.forEach(function(link) {
+  link.addEventListener("click", function() {
+    navMenu.classList.remove("show");
+
+    navLinks.forEach(function(navLink) {
+      navLink.classList.remove("active");
+    });
+
+    link.classList.add("active");
+  });
+});
+
+window.addEventListener("scroll", function() {
+  const sections = [
+    { id: "home", link: document.querySelector('a[href="#home"]') },
+    { id: "studio", link: document.querySelector('a[href="#studio"]') },
+    { id: "recordings", link: document.querySelector('a[href="#recordings"]') }
+  ];
+
+  let currentSection = "home";
+
+  sections.forEach(function(section) {
+    const element = document.getElementById(section.id);
+
+    if (!element) return;
+
+    const sectionTop = element.offsetTop - 120;
+
+    if (window.scrollY >= sectionTop) {
+      currentSection = section.id;
+    }
+  });
+
+  navLinks.forEach(function(link) {
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === `#${currentSection}`) {
+      link.classList.add("active");
+    }
+  });
+});
+
+// Login modal functionality
+if (loginNavBtn) {
+  const savedName = localStorage.getItem("jamkeysUserName");
+
+  if (savedName) {
+    loginNavBtn.textContent = `Hi, ${savedName}`;
+  }
+
+  loginNavBtn.addEventListener("click", function() {
+    loginModal.classList.add("show");
+  });
+}
+
+if (closeLoginBtn) {
+  closeLoginBtn.addEventListener("click", function() {
+    loginModal.classList.remove("show");
+  });
+}
+
+if (saveLoginBtn) {
+  saveLoginBtn.addEventListener("click", function() {
+    const name = loginNameInput.value.trim();
+
+    if (name === "") {
+      statusText.textContent = "Please enter your name.";
+      return;
+    }
+
+    localStorage.setItem("jamkeysUserName", name);
+    loginNavBtn.textContent = `Hi, ${name}`;
+    loginModal.classList.remove("show");
+
+    statusText.textContent = `Welcome, ${name}!`;
+  });
+}
+
+if (loginModal) {
+  loginModal.addEventListener("click", function(event) {
+    if (event.target === loginModal) {
+      loginModal.classList.remove("show");
+    }
+  });
+}
+
 renderPiano();
 preloadPianoSounds();
 preloadDrumSounds();

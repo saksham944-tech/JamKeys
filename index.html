@@ -9,16 +9,19 @@
 <body>
 
   <header class="navbar">
-    <div class="logo">JamKeys</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Studio</a>
-      <a href="#">My Recordings</a>
-      <a href="#">Login</a>
+    <a href="#home" class="logo">JamKeys</a>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <nav class="nav-links" id="navMenu">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#studio" class="nav-link">Studio</a>
+      <a href="#recordings" class="nav-link">My Recordings</a>
+      <button class="login-nav-btn" id="loginNavBtn">Login</button>
     </nav>
   </header>
 
-  <section class="hero">
+  <section id="home" class="hero">
     <h1>Play Instruments With Your Keyboard</h1>
     <p>Create music directly inside your browser. Choose an instrument, play notes, record your tune, and listen again.</p>
     <button onclick="scrollToStudio()">Start Playing</button>
@@ -87,7 +90,7 @@
         <div class="piano" id="keysContainer"></div>
     </section>
 
-    <section class="recordings-section">
+    <section id="recordings" class="recordings-section">
       <h2>My Recordings</h2>
       <p>Your saved music tracks will appear here.</p>
 
@@ -101,6 +104,19 @@
   <footer>
     <p>Made with music, code, and madness.</p>
   </footer>
+
+  <div class="login-modal" id="loginModal">
+    <div class="login-box">
+      <button class="close-login" id="closeLoginBtn">×</button>
+
+      <h2>Welcome to JamKeys</h2>
+      <p>Login UI for now. Backend account system will come later.</p>
+
+      <input type="text" id="loginNameInput" placeholder="Enter your name..." />
+
+      <button id="saveLoginBtn">Continue</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
